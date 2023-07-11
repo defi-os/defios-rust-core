@@ -45,7 +45,7 @@ jobs:
   test-defios:
     name: Test DefiOS contracts
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup/
@@ -63,7 +63,7 @@ jobs:
   test-skill-validator:
     name: Test SkillValidator contracts
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup/

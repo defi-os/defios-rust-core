@@ -32,7 +32,7 @@ describe("skill_validator", () => {
         ),
         ...(await connection.getLatestBlockhash()),
       },
-      "confirmed"
+      "finalized"
     );
     return keypair;
   }
@@ -75,7 +75,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([routerCreatorKeypair])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
     return [routerCreatorKeypair, nameRouterAccount];
   }
 
@@ -127,7 +127,7 @@ describe("skill_validator", () => {
       })
       .signers([routerCreatorKeypair])
       .preInstructions([createED25519Ix])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
     return [verifiedFreelanceAccount];
   }
 
@@ -146,7 +146,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
   });
   it("Stake a job posting", async () => {
     const jobPoster = await create_keypair();
@@ -164,7 +164,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
 
     //creating spl token
     const mintAddress = await createMint(
@@ -206,7 +206,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
   });
   it("Close a job posting after staking on it", async () => {
     const jobPoster = await create_keypair();
@@ -224,7 +224,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
 
     //creating spl token
     const mintAddress = await createMint(
@@ -266,7 +266,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
     await program.methods
       .closeJob()
       .accounts({
@@ -280,7 +280,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
   });
   it("Close a job posting without staking on it", async () => {
     const jobPoster = await create_keypair();
@@ -298,7 +298,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
 
     //creating spl token
     const mintAddress = await createMint(
@@ -321,7 +321,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
   });
   it("Creates a name router!", async () => {
     const [routerCreatorKeypair, nameRouterAccount] =
@@ -363,7 +363,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
 
     //creating spl token
     const mintAddress = await createMint(
@@ -405,7 +405,7 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([jobPoster])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
 
     const freelancer = await create_keypair();
     const [routerCreatorKeypair, nameRouterAccount] =
@@ -426,6 +426,6 @@ describe("skill_validator", () => {
         systemProgram: web3.SystemProgram.programId,
       })
       .signers([freelancer])
-      .rpc({ skipPreflight: true, maxRetries: 5 });
+      .rpc({ skipPreflight: true, maxRetries: 5, commitment: "finalized" });
   });
 });
